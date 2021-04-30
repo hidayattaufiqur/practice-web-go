@@ -22,7 +22,13 @@ func NewTemplates(a *config.AppConfig) {
 
 // RenderTemplate renders template using html/template
 func RenderTemplate(w http.ResponseWriter, html string) {
-	tc := app.TemplateCache
+	var tc map[string]*template.Template
+
+	if app.UseCache {
+		tc = app.TemplateCache
+	} else {
+		tc, _ = CreateTemplateCache()
+	}
 
 	t, ok := tc[html]
 	if !ok {
