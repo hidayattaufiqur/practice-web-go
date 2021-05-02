@@ -1,3 +1,0 @@
-
-		himGab[i] = himA[i]
-	}
